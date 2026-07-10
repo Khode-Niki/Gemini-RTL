@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تنظیمات راست‌چین هوش مصنوعی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-wrapper">
+        <div class="logo-icon">✨</div>
+        <div class="logo-text">
+          <h1>راست‌چین هوش مصنوعی</h1>
+          <p>Gemini & ChatGPT RTL</p>
+        </div>
+      </div>
+      <div class="status-indicator" id="statusIndicator">
+        <span class="pulse-dot"></span>
+        <span class="status-text" id="statusText">فعال</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <!-- Enable Toggle Card -->
+      <div class="card glass">
+        <div class="card-row">
+          <div class="card-info">
+            <h2>فعال‌سازی افزونه</h2>
+            <p>روشن/خاموش کردن کل قابلیت‌های راست‌چین</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="enableToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Alignment Mode Selector Card -->
+      <div class="card glass">
+        <h2>حالت هم‌ترازی متن</h2>
+        <p class="subtitle">انتخاب نحوه تراز شدن متون در چت‌ها</p>
+        
+        <div class="segmented-control">
+          <input type="radio" name="alignMode" id="modeAuto" value="auto" checked>
+          <label for="modeAuto" class="segment-label">
+            <span>خودکار (هوشمند)</span>
+          </label>
+
+          <input type="radio" name="alignMode" id="modeForceRtl" value="force-rtl">
+          <label for="modeForceRtl" class="segment-label">
+            <span>راست‌چین اجباری</span>
+          </label>
+
+          <input type="radio" name="alignMode" id="modeForceLtr" value="force-ltr">
+          <label for="modeForceLtr" class="segment-label">
+            <span>چپ‌چین اجباری</span>
+          </label>
+          
+          <div class="slide-item"></div>
+        </div>
+      </div>
+
+      <!-- Font Selection Card -->
+      <div class="card glass">
+        <h2>انتخاب فونت فارسی</h2>
+        <p class="subtitle">فونت مورد نظر خود را انتخاب کنید یا از فونت پیش‌فرض سایت استفاده کنید</p>
+        
+        <div class="select-container">
+          <div class="select-wrapper">
+            <select id="fontSelect" class="premium-select">
+              <option value="default">فونت پیش‌فرض سایت</option>
+              <option value="Vazirmatn">وزیر (Vazirmatn)</option>
+              <option value="AbarLow">ابر لو (AbarLow)</option>
+              <option value="Lahzeh">لحظه (Lahzeh)</option>
+              <option value="Modam">مدام (Modam)</option>
+              <option value="Pelak">پلاک (Pelak)</option>
+              <option value="Peyda">پیدا (Peyda)</option>
+              <option value="Pinar">پینار (Pinar)</option>
+              <option value="YekanBakh">یکان‌بخش (YekanBakh)</option>
+            </select>
+            <div class="select-arrow">
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>ساخته شده برای گوگل جمنای و چت‌جی‌پی‌تی 🚀</p>
+      <p class="creator">توسعه داده شده توسط <a href="https://github.com/Khode-Niki" target="_blank">Khode-Niki</a></p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

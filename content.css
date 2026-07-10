@@ -1,0 +1,125 @@
+/* CSS Styles for Gemini RTL Formatter Extension */
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
+/* Define Local Fonts */
+@font-face {
+  font-family: 'AbarLow';
+  src: url('chrome-extension://__MSG_@@extension_id__/Font/AbarLow-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lahzeh';
+  src: url('chrome-extension://__MSG_@@extension_id__/Font/Lahzeh-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Modam';
+  src: url('chrome-extension://__MSG_@@extension_id__/Font/Modam-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pelak';
+  src: url('chrome-extension://__MSG_@@extension_id__/Font/Pelak-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Peyda';
+  src: url('chrome-extension://__MSG_@@extension_id__/Font/Peyda-Bold(@vieratec).ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Pinar';
+  src: url('chrome-extension://__MSG_@@extension_id__/Font/Pinar-VF[wght-KSHD-DSTY].woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('chrome-extension://__MSG_@@extension_id__/Font/YekanBakh-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --custom-rtl-font: 'Vazirmatn', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Forced RTL class applied to elements containing Persian/Arabic text */
+.gemini-rtl-forced {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* Forced LTR class in case elements need to be reset */
+.gemini-ltr-forced {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Custom Persian Font application using CSS variable */
+.gemini-rtl-font {
+  font-family: var(--custom-rtl-font) !important;
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+}
+
+/* Fix inline and block code elements so they remain LTR */
+.gemini-rtl-forced pre,
+.gemini-rtl-forced code,
+.gemini-rtl-forced [class*="code-block"],
+.gemini-rtl-forced [class*="syntax-highlight"],
+.gemini-rtl-forced kbd,
+.gemini-rtl-forced math,
+.gemini-rtl-forced .math-block {
+  direction: ltr !important;
+  text-align: left !important;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+  display: block; /* For code blocks to cover full width */
+}
+
+/* Inline code adjustment - keep LTR inline order but let it sit naturally in the text flow */
+.gemini-rtl-forced code:not(pre code) {
+  display: inline-block !important;
+  direction: ltr !important;
+  text-align: left !important;
+  padding: 0.1em 0.3em !important;
+  margin: 0 0.2em !important;
+  unicode-bidi: embed !important;
+}
+
+/* Fix Lists (Unordered & Ordered) so bullets/numbers align to the right side */
+ul.gemini-rtl-forced, 
+ol.gemini-rtl-forced {
+  padding-right: 24px !important;
+  padding-left: 0 !important;
+  margin-right: 12px !important;
+  margin-left: 0 !important;
+}
+
+ul.gemini-rtl-forced li,
+ol.gemini-rtl-forced li {
+  text-align: right !important;
+}
+
+/* Nested lists within RTL lists */
+ul.gemini-rtl-forced ul,
+ol.gemini-rtl-forced ol,
+ul.gemini-rtl-forced ol,
+ol.gemini-rtl-forced ul {
+  padding-right: 20px !important;
+  padding-left: 0 !important;
+  margin-right: 8px !important;
+  margin-left: 0 !important;
+}
+
+/* Prompt input editing adjustments */
+[contenteditable="true"].gemini-rtl-forced {
+  direction: rtl !important;
+  text-align: right !important;
+}
