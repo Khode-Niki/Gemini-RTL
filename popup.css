@@ -60,12 +60,11 @@ body {
   gap: 10px;
 }
 
-.logo-icon {
-  font-size: 24px;
-  background: linear-gradient(135deg, var(--color-violet) 0%, var(--color-cyan) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.3));
+.logo-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(139, 92, 246, 0.4));
   animation: float 3s ease-in-out infinite;
 }
 
