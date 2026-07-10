@@ -1,13 +1,13 @@
-# Gemini & ChatGPT Persian RTL Formatter
-> A premium Chrome Extension to format Persian/Arabic texts to Right-to-Left (RTL) layout on Google Gemini and ChatGPT, with customizable custom Persian fonts.
+# AI Chats Persian RTL Formatter (Gemini, ChatGPT, Claude, DeepSeek)
+> A premium Chrome Extension to format Persian/Arabic texts to Right-to-Left (RTL) layout on Google Gemini, ChatGPT, Claude, and DeepSeek, with customizable custom Persian fonts.
 
-افزونه‌ای حرفه‌ای و مدرن برای گوگل جمنای و چت‌جی‌پی‌تی جهت راست‌چین‌سازی متون فارسی/عربی همراه با قابلیت انتخاب فونت‌های فارسی یا بازگشت به فونت اصلی وب‌سایت.
+افزونه‌ای حرفه‌ای و مدرن برای گوگل جمنای، چت‌جی‌پی‌تی، کلاد و دیپ‌سیک جهت راست‌چین‌سازی متون فارسی/عربی همراه با قابلیت انتخاب فونت‌های فارسی یا بازگشت به فونت اصلی وب‌سایت.
 
 ---
 
 ## Features | امکانات
 
-- 🚀 **Multi-platform support**: Works seamlessly on both [Google Gemini](https://gemini.google.com) and [ChatGPT](https://chatgpt.com).
+- 🚀 **Multi-platform support**: Works seamlessly on [Google Gemini](https://gemini.google.com), [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai), and [DeepSeek](https://chat.deepseek.com).
 - 🔄 **Smart Auto RTL**: Automatically detects Persian/Arabic characters and applies RTL alignment.
 - 🎨 **Premium Font Selection**: Choice of 8 beautiful Persian web fonts:
   - **Vazirmatn** (Default)
@@ -34,7 +34,7 @@ Since this extension is loaded as an **unpacked extension** in developer mode:
 3. **Enable Developer Mode**: Turn on the **"Developer mode"** toggle in the top-right corner.
 4. **Load Unpacked**: Click on the **"Load unpacked"** button in the top-left corner.
 5. **Select Folder**: Choose the main folder of this project (the directory containing `manifest.json`).
-6. **Done!** The extension icon will appear in your toolbar. Open Gemini or ChatGPT to start chatting in RTL!
+6. **Done!** The extension icon will appear in your toolbar. Open Gemini, ChatGPT, Claude, or DeepSeek to start chatting in RTL!
 
 ---
 
@@ -46,7 +46,7 @@ Since this extension is loaded as an **unpacked extension** in developer mode:
 3. **حالت توسعه‌دهنده:** سوئیچ **"Developer mode"** را در گوشه سمت راست بالا فعال کنید.
 4. **بارگذاری افزونه:** روی دکمه **"Load unpacked"** در گوشه سمت چپ بالا کلیک کنید.
 5. **انتخاب پوشه:** پوشه اصلی این پروژه (پوشه‌ای که فایل `manifest.json` در آن قرار دارد) را انتخاب کنید.
-6. **اتمام!** افزونه فعال شد. وارد سایت جمنای یا چت‌جی‌پی‌تی شوید و بدون دغدغه فارسی تایپ کنید.
+6. **اتمام!** افزونه فعال شد. وارد سایت‌های جمنای، چت‌جی‌پی‌تی، کلاد یا دیپ‌سیک شوید و بدون دغدغه فارسی تایپ کنید.
 
 ---
 
