@@ -12,6 +12,36 @@ const hasPersianRegex = /[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]/
 
 const hasPersian = (text) => hasPersianRegex.test(text);
 
+// Target selector for elements that need RTL formatting (includes standard tags, message wrappers, and user sent messages)
+const TARGET_SELECTOR = 'p, li, h1, h2, h3, h4, h5, h6, blockquote, message-content, .message-content, [data-message-author-role="user"], [data-testid="user-message"], .whitespace-pre-wrap, .font-user-message';
+
+// In-memory cache for checking elements without modifying DOM attributes (avoids React hydration/rendering feedback loops)
+let checkedElements = new WeakMap();
+
+// Batch and debounce variables for requestAnimationFrame processing (stops infinite loops)
+let elementsToProcess = new Set();
+let processTimeout = null;
+
+function scheduleProcessing() {
+  if (processTimeout) {
+    cancelAnimationFrame(processTimeout);
+  }
+  processTimeout = requestAnimationFrame(() => {
+    if (!settings.enabled) {
+      elementsToProcess.clear();
+      return;
+    }
+
+    elementsToProcess.forEach(el => {
+      if (el && el.isConnected) { // safety check: only format if element is still connected to the DOM
+        processTextElement(el);
+      }
+    });
+
+    elementsToProcess.clear();
+  });
+}
+
 // Process a single element
 function processTextElement(el, force = false) {
   // Exclude code blocks and syntax-highlighted containers
@@ -30,10 +60,11 @@ function processTextElement(el, force = false) {
   const text = (el.value !== undefined ? el.value : el.textContent) || '';
 
   // Avoid unnecessary DOM operations if text hasn't changed
-  if (!force && el.dataset.lastCheckedText === text) {
+  const lastChecked = checkedElements.get(el);
+  if (!force && lastChecked === text) {
     return;
   }
-  el.dataset.lastCheckedText = text;
+  checkedElements.set(el, text);
 
   // If extension is disabled, clear styling
   if (!settings.enabled) {
@@ -62,17 +93,6 @@ function processTextElement(el, force = false) {
       } else {
         el.classList.remove('gemini-rtl-font');
       }
-
-      // If it's a list item (li), also set RTL on its parent ul/ol to format bullet points
-      if (el.tagName === 'LI') {
-        const parentList = el.closest('ul, ol');
-        if (parentList) {
-          parentList.classList.add('gemini-rtl-forced');
-          if (settings.selectedFont !== 'default') {
-            parentList.classList.add('gemini-rtl-font');
-          }
-        }
-      }
     } else {
       el.classList.remove('gemini-rtl-forced', 'gemini-rtl-font', 'gemini-ltr-forced');
     }
@@ -86,8 +106,7 @@ function applyRTL(force = false) {
     return;
   }
 
-  const selector = 'p, li, h1, h2, h3, h4, h5, h6, blockquote, [contenteditable="true"], textarea, message-content, .message-content';
-  const elements = document.querySelectorAll(selector);
+  const elements = document.querySelectorAll(TARGET_SELECTOR);
   elements.forEach(el => processTextElement(el, force));
 }
 
@@ -96,13 +115,20 @@ function clearAllRTL() {
   const elements = document.querySelectorAll('.gemini-rtl-forced, .gemini-rtl-font, .gemini-ltr-forced');
   elements.forEach(el => {
     el.classList.remove('gemini-rtl-forced', 'gemini-rtl-font', 'gemini-ltr-forced');
-    delete el.dataset.lastCheckedText;
   });
 
   const lists = document.querySelectorAll('ul.gemini-rtl-forced, ol.gemini-rtl-forced');
   lists.forEach(el => {
     el.classList.remove('gemini-rtl-forced', 'gemini-rtl-font');
   });
+
+  // Clear batch queues and caches
+  elementsToProcess.clear();
+  if (processTimeout) {
+    cancelAnimationFrame(processTimeout);
+    processTimeout = null;
+  }
+  checkedElements = new WeakMap();
 }
 
 // Load settings and initialize
@@ -156,20 +182,46 @@ function initObserver() {
   }
 
   observer = new MutationObserver((mutations) => {
-    let shouldRun = false;
+    if (!settings.enabled) return;
+
+    let hasNewElements = false;
+
     for (const mutation of mutations) {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        shouldRun = true;
-        break;
-      }
-      if (mutation.type === 'characterData') {
-        shouldRun = true;
-        break;
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            // Check if the added node matches the selector
+            if (node.matches(TARGET_SELECTOR)) {
+              elementsToProcess.add(node);
+              hasNewElements = true;
+            }
+            // Check descendants
+            const descendants = node.querySelectorAll(TARGET_SELECTOR);
+            descendants.forEach(desc => {
+              elementsToProcess.add(desc);
+              hasNewElements = true;
+            });
+          }
+          
+          // Check closest ancestor matching target selector
+          const ancestor = node.parentElement ? node.parentElement.closest(TARGET_SELECTOR) : null;
+          if (ancestor) {
+            elementsToProcess.add(ancestor);
+            hasNewElements = true;
+          }
+        });
+      } else if (mutation.type === 'characterData') {
+        const node = mutation.target;
+        const ancestor = node.parentElement ? node.parentElement.closest(TARGET_SELECTOR) : null;
+        if (ancestor) {
+          elementsToProcess.add(ancestor);
+          hasNewElements = true;
+        }
       }
     }
 
-    if (shouldRun) {
-      applyRTL();
+    if (hasNewElements) {
+      scheduleProcessing();
     }
   });
 
@@ -182,6 +234,14 @@ function initObserver() {
 
 // Watch user typing in prompt box / inputs
 document.addEventListener('input', (e) => {
+  const target = e.target;
+  if (target.isContentEditable || target.tagName === 'TEXTAREA' || target.tagName === 'INPUT') {
+    processTextElement(target, true);
+  }
+});
+
+// Watch user focusing in prompt box / inputs
+document.addEventListener('focusin', (e) => {
   const target = e.target;
   if (target.isContentEditable || target.tagName === 'TEXTAREA' || target.tagName === 'INPUT') {
     processTextElement(target, true);
