@@ -1,15 +1,40 @@
-# AI Chats Persian RTL Formatter (Gemini, ChatGPT, Claude, DeepSeek)
-> A premium Chrome Extension to format Persian/Arabic texts to Right-to-Left (RTL) layout on Google Gemini, ChatGPT, Claude, and DeepSeek, with customizable custom Persian fonts.
+<div align="center">
 
-افزونه‌ای حرفه‌ای و مدرن برای گوگل جمنای، چت‌جی‌پی‌تی، کلاد و دیپ‌سیک جهت راست‌چین‌سازی متون فارسی/عربی همراه با قابلیت انتخاب فونت‌های فارسی یا بازگشت به فونت اصلی وب‌سایت.
+# ✨ AI Chats Persian RTL Formatter ✨
+
+[![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-blue?logo=googlechrome&logoColor=white)](#)
+[![Version](https://img.shields.io/badge/Version-1.0.0-success)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#)
+
+**A premium Chrome Extension to format Persian/Arabic texts to Right-to-Left (RTL) layout on Google Gemini, ChatGPT, Claude, and DeepSeek, with customizable custom Persian fonts.**
+
+*افزونه‌ای حرفه‌ای و مدرن برای گوگل جمنای، چت‌جی‌پی‌تی، کلاد و دیپ‌سیک جهت راست‌چین‌سازی متون فارسی/عربی همراه با قابلیت انتخاب فونت‌های فارسی یا بازگشت به فونت اصلی وب‌سایت.*
+
+</div>
 
 ---
 
-## Features | امکانات
+## 📑 Table of Contents | فهرست مطالب
 
-- 🚀 **Multi-platform support**: Works seamlessly on [Google Gemini](https://gemini.google.com), [ChatGPT](https://chatgpt.com), [Claude](https://claude.ai), and [DeepSeek](https://chat.deepseek.com).
-- 🔄 **Smart Auto RTL**: Automatically detects Persian/Arabic characters and applies RTL alignment.
-- 🎨 **Premium Font Selection**: Choice of 8 beautiful Persian web fonts:
+- [Features | امکانات](#-features--امکانات)
+- [Supported Platforms | پلتفرم‌های پشتیبانی‌شده](#-supported-platforms--پلتفرمهای-پشتیبانیشده)
+- [Installation | راهنمای نصب](#-installation--راهنمای-نصب)
+  - [English: How to install manually](#english-how-to-install-manually)
+  - [فارسی: راهنمای نصب دستی](#فارسی-راهنمای-نصب-دستی)
+- [Tech Stack | تکنولوژی‌های استفاده شده](#-tech-stack--تکنولوژیهای-استفاده-شده)
+- [Repository Structure | ساختار پروژه](#-repository-structure--ساختار-پروژه)
+- [Contributing | مشارکت](#-contributing--مشارکت)
+- [License | مجوز](#-license--مجوز)
+- [Author | سازنده](#-author--سازنده)
+
+---
+
+## 🚀 Features | امکانات
+
+- 🌐 **Multi-platform Support:** Works seamlessly on top AI chatbots.
+- 🔄 **Smart Auto RTL:** Automatically detects Persian/Arabic characters and applies RTL alignment.
+- 🎨 **Premium Font Selection:** Choice of 8 beautiful Persian web fonts:
   - **Vazirmatn** (Default)
   - **Pelak**
   - **YekanBakh**
@@ -18,13 +43,24 @@
   - **Lahzeh**
   - **Pinar**
   - **AbarLow**
-- ⚙️ **Fallback to Site Font**: Option to keep the website's default font family while maintaining RTL structure.
-- 🧠 **Code & Math Safe**: Prevents code blocks (`<pre>`, `<code>`), KaTeX, and MathJax elements from being reversed, keeping them LTR.
-- 🌑 **Premium UI**: Modern, glossy dark-theme control panel (Popup menu).
+- ⚙️ **Fallback to Site Font:** Option to keep the website's default font family while maintaining RTL structure.
+- 🧠 **Code & Math Safe:** Prevents code blocks (`<pre>`, `<code>`), KaTeX, and MathJax elements from being reversed, keeping them LTR.
+- 🌑 **Premium UI:** Modern, glossy dark-theme control panel (Popup menu).
 
 ---
 
-## Installation | راهنمای نصب
+## 🤖 Supported Platforms | پلتفرم‌های پشتیبانی‌شده
+
+| Platform | Link | Support Status |
+|----------|------|----------------|
+| **ChatGPT** | [chatgpt.com](https://chatgpt.com) | ✅ Fully Supported |
+| **Google Gemini** | [gemini.google.com](https://gemini.google.com) | ✅ Fully Supported |
+| **Claude** | [claude.ai](https://claude.ai) | ✅ Fully Supported |
+| **DeepSeek** | [chat.deepseek.com](https://chat.deepseek.com) | ✅ Fully Supported |
+
+---
+
+## 🛠 Installation | راهنمای نصب
 
 ### English: How to install manually
 Since this extension is loaded as an **unpacked extension** in developer mode:
@@ -50,7 +86,15 @@ Since this extension is loaded as an **unpacked extension** in developer mode:
 
 ---
 
-## Repository Structure | ساختار پروژه
+## 💻 Tech Stack | تکنولوژی‌های استفاده شده
+
+- **HTML/CSS/JS** - Core extension code.
+- **Manifest V3** - Latest Chrome extension standard.
+- **Chrome Storage API** - For persisting user font choices.
+
+---
+
+## 📂 Repository Structure | ساختار پروژه
 
 ```bash
 ├── manifest.json         # Extension configuration
@@ -65,7 +109,23 @@ Since this extension is loaded as an **unpacked extension** in developer mode:
 
 ---
 
-## Author | سازنده
+## 🤝 Contributing | مشارکت
 
-Developed by [Khode-Niki](https://github.com/Khode-Niki).  
-توسعه داده شده توسط [Khode-Niki](https://github.com/Khode-Niki).
+Contributions, issues and feature requests are welcome!
+Feel free to check [issues page](#). If you want to contribute, please fork the repository and submit a pull request.
+
+مشارکت‌ها، پیشنهادات و گزارش مشکلات شما با کمال میل پذیرفته می‌شود!
+در صورت تمایل به مشارکت، لطفاً پروژه را فورک کرده و تغییرات خود را در قالب یک Pull Request ارسال کنید.
+
+---
+
+## 📝 License | مجوز
+
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
+
+---
+
+## 🧑‍💻 Author | سازنده
+
+Developed with ❤️ by [Khode-Niki](https://github.com/Khode-Niki).
+توسعه داده شده با ❤️ توسط [Khode-Niki](https://github.com/Khode-Niki).
